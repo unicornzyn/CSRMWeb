@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Xml.Linq;
+using CSRMUtils;
 
 namespace CSRMWeb.Controllers
 {
@@ -69,7 +70,11 @@ namespace CSRMWeb.Controllers
 
         public string Subscribe(string toUser, string fromUser)
         {
-            return CreateImageAndText(toUser, fromUser, "title test", "description test", System.Configuration.ConfigurationManager.AppSettings["rooturl"] + "Images/banner.jpg", System.Configuration.ConfigurationManager.AppSettings["rooturl"] + "Home/Index");
+            string url = System.Configuration.ConfigurationManager.AppSettings["rooturl"] + "Home/Index";
+            OpenAuthWX wb = new OpenAuthWX(System.Configuration.ConfigurationManager.AppSettings["wxappid"], System.Configuration.ConfigurationManager.AppSettings["wxappsecret"], 2);
+            wb.RedirectUri = url;
+
+            return CreateImageAndText(toUser, fromUser, "title test", "description test", System.Configuration.ConfigurationManager.AppSettings["rooturl"] + "Images/banner.jpg", wb.FirstPartUrl());
         }
         //生成图文消息
         private string CreateImageAndText(string toUser, string fromUser, string title, string description, string picurl, string url)

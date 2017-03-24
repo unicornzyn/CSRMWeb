@@ -56,6 +56,11 @@ namespace CSRMUtils
                 CallUrl = string.Format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_userinfo&state={2}#wechat_redirect",
                     AppID, System.Web.HttpUtility.UrlEncode(RedirectUri), ReturnUrl == "" ? Util.GenerateRndNonce() : System.Web.HttpUtility.UrlEncode(ReturnUrl));
             }
+            else if (WXType == 2) 
+            {
+                CallUrl = string.Format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_base&state={2}#wechat_redirect",
+                        AppID, System.Web.HttpUtility.UrlEncode(RedirectUri), ReturnUrl == "" ? Util.GenerateRndNonce() : System.Web.HttpUtility.UrlEncode(ReturnUrl));
+            }
             else
             {
                 CallUrl = string.Format("https://open.weixin.qq.com/connect/qrconnect?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_login&state={2}#wechat_redirect",

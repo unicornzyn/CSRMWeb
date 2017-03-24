@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSRMUtils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,11 +12,11 @@ namespace CSRMWeb.Controllers
     {
         public ActionResult Index() 
         {
+            var wx = new OpenAuthWX(System.Configuration.ConfigurationManager.AppSettings["wxappid"], System.Configuration.ConfigurationManager.AppSettings["wxappsecret"], 2);
+            
+            var token = wx.SecondPart();
+            ViewBag.openid = token.openid;
             return View();
-        }
-        public string t() 
-        {
-            return Request.Url.Host;
-        }
+        }      
     }
 }
