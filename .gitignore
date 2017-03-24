@@ -1,0 +1,10 @@
+bin
+obj
+release
+packages
+PublishProfiles
+Web.config
+Web.Debug.config
+Web.Release.config
+*.swo
+*.swp
