@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSRMWeb", "CSRMWeb\CSRMWeb.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSRMUtils", "CSRMUtils\CSRMUtils.csproj", "{926631B9-948D-41E7-88D0-C59839B0B761}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSRMDAL", "CSRMDAL\CSRMDAL.csproj", "{22F5BB1D-0F04-4C8E-83FB-D42B765B400D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{926631B9-948D-41E7-88D0-C59839B0B761}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{926631B9-948D-41E7-88D0-C59839B0B761}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{926631B9-948D-41E7-88D0-C59839B0B761}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F5BB1D-0F04-4C8E-83FB-D42B765B400D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F5BB1D-0F04-4C8E-83FB-D42B765B400D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F5BB1D-0F04-4C8E-83FB-D42B765B400D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F5BB1D-0F04-4C8E-83FB-D42B765B400D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

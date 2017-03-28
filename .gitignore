@@ -8,3 +8,4 @@ Web.Debug.config
 Web.Release.config
 *.swo
 *.swp
+App.Config

@@ -1,0 +1,80 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img,input{
+	margin:0;padding:0;
+}
+body{
+	font:12px/19px Arial, Helvetica, sans-serif,"宋体";
+}
+fieldset,img{
+	border:0;
+}
+ul,ol{
+	list-style:none;}
+img { 
+	border:none;
+	display:block;
+}
+
+a {
+	text-decoration:none;
+}
+html,body{
+	height:auto;
+	font-size:100%;
+	}
+
+/*=========去除默认样式*/
+input[type="button"], input[type="submit"], input[type="reset"] {
+-webkit-appearance: none;
+}
+
+textarea {  -webkit-appearance: none;}
+.button{ border-radius: 0; }
+
+input:focus,input:visited,input:hover{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-user-modify:read-write-plaintext-only;
+    outline:none;
+} 
+a,.tape3-top2,.tape3-top3 div{
+	tap-highlight-color:rgba(0,0,0,0); 
+	-webkit-tap-highlight-color:rgba(0,0,0,0); 
+	-moz-tap-highlight-color:rgba(0,0,0,0);
+
+}
+input,input:focus,textarea:focus ,,a:focus{
+    outline: none;
+ 
+}   
+input::-ms-clear {
+    display: none;
+}
+textarea {
+    resize: none;
+}
+a,button,input,textarea{
+    -webkit-tap-highlight-color: rgba(0,0,0,0)
+    -webkit-user-modify:read-write-plaintext-only; 
+}
+
+html {
+　-webkit-text-size-adjust: 100%;
+}
+
+.index-content:before {
+	content: ".";
+	display: block;
+	height: 0px;
+	clear: both;
+	visibility: hidden;
+}
+.index-content{
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+}
+
+p{
+	word-break:break-all;
+}
