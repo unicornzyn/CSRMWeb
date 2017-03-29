@@ -178,6 +178,9 @@
                     window.location.href = data.msg;
                 } else if (data.result == 1) {
                     alert("报名成功");
+                    window.location.href='@CSRMUtils.St.GetLoginUrl()';
+                }else if (data.result == 2) {
+                    alert("您已注册");
                 }
             });
 

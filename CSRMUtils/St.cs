@@ -16,6 +16,7 @@ namespace CSRMUtils
             OpenAuthWX wb = new OpenAuthWX(System.Configuration.ConfigurationManager.AppSettings["wxappid"], System.Configuration.ConfigurationManager.AppSettings["wxappsecret"], 2);
             wb.RedirectUri = url;
             return wb.FirstPartUrl();
+            //return "/Home/Index";
         }
         public static string GetMd5(string str)
         {

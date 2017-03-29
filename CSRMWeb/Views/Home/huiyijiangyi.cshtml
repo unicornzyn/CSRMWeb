@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "huiyijiangyi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="zaixianbao-main">
+    <div class="huiyijiangyi-main-top1">会议讲义</div>
+    <ul class="huiyijiangyi-main-top3">
+        <li>
+            <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义1</a>
+            <ul class="huiyijiangyi-main-top3-ul">
+                <li><span>课件名称</span><span></span></li>
+                <li><span>讲者</span><span></span></li>
+                <li><span>单位</span><span></span></li>
+                <li>课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容。</li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义1</a>
+            <ul class="huiyijiangyi-main-top3-ul">
+                <li><span>课件名称</span><span></span></li>
+                <li><span>讲者</span><span></span></li>
+                <li><span>单位</span><span></span></li>
+                <li>课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容。</li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义1</a>
+            <ul class="huiyijiangyi-main-top3-ul">
+                <li><span>课件名称</span><span></span></li>
+                <li><span>讲者</span><span></span></li>
+                <li><span>单位</span><span></span></li>
+                <li>课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容。</li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义1</a>
+            <ul class="huiyijiangyi-main-top3-ul">
+                <li><span>课件名称</span><span></span></li>
+                <li><span>讲者</span><span></span></li>
+                <li><span>单位</span><span></span></li>
+                <li>课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容。</li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义1</a>
+            <ul class="huiyijiangyi-main-top3-ul">
+                <li><span>课件名称</span><span></span></li>
+                <li><span>讲者</span><span></span></li>
+                <li><span>单位</span><span></span></li>
+                <li>课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容。</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+
+            $(".huiyijiangyi-main-top3-a").click(function () {
+
+                if ($(this).next().is(":hidden")) {
+
+                    $(this).next().slideDown();
+
+                    $(this).css("background", "url(/Images/jiangyi_bg2_03.png) no-repeat center center");
+                    $(this).css("background-size", "100% 40px");
+
+                } else {
+
+
+                    $(this).next().slideUp();
+                    $(this).css("background", "url(/Images/jiangyi_bg3_03.png) no-repeat center center");
+                    $(this).css("background-size", "100% 30px");
+
+                }
+            })
+
+        })
+
+    </script>
+    }

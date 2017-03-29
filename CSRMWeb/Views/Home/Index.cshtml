@@ -1,6 +1,56 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "中华医学会生殖医学规范指南中国行";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<ul class="index-main index-content" id="index-main">
+    <li style="margin:0px;">
+        <a href="/Home/zaixianbaoming"><img src="~/Images/bm.png" /><span>在线报名</span></a>
+    </li>
+    <li>
+        <a href="javascript:alert('更新中');"><img src="~/Images/hy.png" /><span>会议简介</span></a>@*/Home/huiyijianjie*@
+    </li>
+    <li>
+        <a href="javascript:alert('更新中');"><img src="~/Images/rc.png" /><span>会议日程</span></a>@*/Home/huiyirichen*@
+    </li>
+    <li style="margin:0px;">
+        <a href="javascript:alert('更新中');"><img src="~/Images/jy.png" /><span>会议讲义</span></a>@*/Home/huiyijiangyi*@
+    </li>
+    <li>
+        <a href="javascript:alert('更新中');"><img src="~/Images/jz.png" /><span>讲者介绍</span></a>@*/Home/jiangzhejieshao*@
+    </li>
+    <li>
+        <a href="javascript:alert('更新中');"><img src="~/Images/zn.png" /><span>指南解读</span></a>@*/Home/zhinan*@
+    </li>
+    <li style="margin:0px;">
+        <a href="javascript:alert('更新中');"><img src="~/Images/jt.png" /><span>酒店交通</span></a>@*/Home/jiaotong*@
+    </li>
+    <li>
+        <a href="javascript:alert('更新中');"><img src="~/Images/sp.png" /><span>讲课视频</span></a>@*/Home/shipin*@
+    </li>
+    <li>
+        <a href="javascript:alert('更新中');"><img src="~/Images/lx.png" /><span>联系我们</span></a>@*/Home/lianxiwomen*@
+    </li>
+</ul>
+
+@section scripts{
+    <script type="text/javascript">
+        /*
+        var inDexleng = document.getElementById("index-main");
+
+        var inDexLi = inDexleng.getElementsByTagName("li");
+
+        for (var i = 0; i < inDexLi.length; i++) {
+
+            this.index = i;
+
+            if (this.index % 3 == 0) {
+
+                inDexLi[i].style.margin = "0px";
+
+            }
+
+        }
+        */
+    </script>    
+}
