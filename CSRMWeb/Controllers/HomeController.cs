@@ -14,6 +14,10 @@ namespace CSRMWeb.Controllers
     {
         public ActionResult Index()
         {
+#if DEBUG
+            ViewBag.isreg = 1;
+            Session["openid"] = "1";
+#else
             var wx = new OpenAuthWX(System.Configuration.ConfigurationManager.AppSettings["wxappid"], System.Configuration.ConfigurationManager.AppSettings["wxappsecret"], 2);
 
             var token = wx.SecondPart();
@@ -38,9 +42,10 @@ namespace CSRMWeb.Controllers
                 ViewBag.isreg = 0;
             }
 
+#endif
+            
 
-            //ViewBag.isreg = 1;
-            //Session["openid"] = "1";
+            
 
 
             return View();

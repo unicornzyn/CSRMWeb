@@ -12,11 +12,14 @@ namespace CSRMUtils
     {
         public static string GetLoginUrl()
         {
+#if DEBUG
+            return "/Home/Index";
+#else
             string url = System.Configuration.ConfigurationManager.AppSettings["rooturl"] + "Home/Index";
             OpenAuthWX wb = new OpenAuthWX(System.Configuration.ConfigurationManager.AppSettings["wxappid"], System.Configuration.ConfigurationManager.AppSettings["wxappsecret"], 2);
             wb.RedirectUri = url;
             return wb.FirstPartUrl();
-            //return "/Home/Index";
+#endif
         }
         public static string GetMd5(string str)
         {
