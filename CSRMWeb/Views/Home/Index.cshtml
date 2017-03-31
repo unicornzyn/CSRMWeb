@@ -5,7 +5,7 @@
 
 <ul class="index-main index-content" id="index-main">
     <li style="margin:0px;">
-        <a href="/Home/zaixianbaoming"><img src="~/Images/bm.png" /><span>在线报名</span></a>
+        <a href="@(ViewBag.isreg == 1 ? "javascript:alert('您已注册');" : "/Home/zaixianbaoming")"><img src="~/Images/bm.png" /><span>在线报名</span></a>
     </li>
     <li>
         <a href="javascript:alert('更新中');"><img src="~/Images/hy.png" /><span>会议简介</span></a>@*/Home/huiyijianjie*@

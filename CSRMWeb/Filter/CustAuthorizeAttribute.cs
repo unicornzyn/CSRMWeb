@@ -10,18 +10,22 @@ namespace CSRMWeb.Filter
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext.Session["openid"] == null)
+            if (httpContext == null || httpContext.Session == null || httpContext.Session["openid"] == null)
             {
                 return false;
             }
             else
             {
                 return true;
-            }            
+            }
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            filterContext.Result = new RedirectResult(CSRMUtils.St.GetLoginUrl());
+            if (filterContext != null)
+            {
+                filterContext.Result = new RedirectResult(CSRMUtils.St.GetLoginUrl());
+            }
+
         }
     }
 }

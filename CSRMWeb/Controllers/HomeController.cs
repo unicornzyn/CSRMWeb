@@ -14,16 +14,35 @@ namespace CSRMWeb.Controllers
     {
         public ActionResult Index()
         {
-            
             var wx = new OpenAuthWX(System.Configuration.ConfigurationManager.AppSettings["wxappid"], System.Configuration.ConfigurationManager.AppSettings["wxappsecret"], 2);
 
             var token = wx.SecondPart();
 
-            Session["openid"] = token.openid;            
+            if (token == null)
+            {
+                return Redirect(St.GetLoginUrl());
+            }
+            var openid = token.openid;
 
-            //return RedirectToAction("zaixianbaoming", "Home");
+            Session["openid"] = token.openid;
 
+
+            DBConnection db = new DBConnection();
+
+            if (db.users.Where(a => a.openid == openid).Count() > 0)
+            {
+                ViewBag.isreg = 1;
+            }
+            else
+            {
+                ViewBag.isreg = 0;
+            }
+
+
+            //ViewBag.isreg = 1;
             //Session["openid"] = "1";
+
+
             return View();
         }
         [CustAuthorizeAttribute()]
