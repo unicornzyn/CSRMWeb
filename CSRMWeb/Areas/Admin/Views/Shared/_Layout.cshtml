@@ -22,13 +22,18 @@
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="http://v3.bootcss.com/assets/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="http://v3.bootcss.com/assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        .error {
+            color:red;
+        }
+    </style>
 </head>
 
 <body>
@@ -61,23 +66,26 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#">会议简介</a></li>
-                    <li><a href="#">会议日程</a></li>
-                    <li><a href="#">会议讲义</a></li>
-                    <li><a href="#">讲者介绍</a></li>
+                    <li class="@(ViewBag.menu == 1 ? "active" : "")"><a href="/Admin/Manager/hyjj">会议简介</a></li>
+                    <li class="@(ViewBag.menu == 2 ? "active" : "")"><a href="/Admin/Manager/hyrc">会议日程</a></li>
+                    <li class="@(ViewBag.menu == 3 ? "active" : "")"><a href="/Admin/Manager/hyjy">会议讲义</a></li>
+                    <li class="@(ViewBag.menu == 4 ? "active" : "")"><a href="/Admin/Manager/jzjs">讲者介绍</a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="">指南解读</a></li>
-                    <li><a href="">酒店交通</a></li>
-                    <li><a href="">精彩瞬间</a></li>
-                    <li><a href="">联系我们</a></li>
+                    <li class="@(ViewBag.menu == 5 ? "active" : "")"><a href="/Admin/Manager/znjd">指南解读</a></li>
+                    <li class="@(ViewBag.menu == 6 ? "active" : "")"><a href="/Admin/Manager/jdjt">酒店交通</a></li>
+                    <li class="@(ViewBag.menu == 7 ? "active" : "")"><a href="/Admin/Manager/jcsj">精彩瞬间</a></li>
+                    <li class="@(ViewBag.menu == 8 ? "active" : "")"><a href="/Admin/Manager/lxwm">联系我们</a></li>
                 </ul>
             </div>
-            @RenderBody()
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                @RenderBody()
+            </div>
         </div>
     </div>
 
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->

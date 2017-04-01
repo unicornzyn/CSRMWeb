@@ -139,6 +139,7 @@
     <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WXController.cs" />
+    <Compile Include="Filter\AdminAuthoorizeAttribute.cs" />
     <Compile Include="Filter\CustAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -155,6 +156,15 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Account\SignIn.cshtml" />
     <Content Include="Areas\Admin\Views\Manager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AreaSelect.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\hyjj.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\hyrc.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\hyjy.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\jzjs.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\znjd.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\jdjt.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\jcsj.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\lxwm.cshtml" />
     <None Include="Properties\PublishProfiles\1.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\banner.jpg" />

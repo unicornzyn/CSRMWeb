@@ -10,9 +10,9 @@ namespace CSRMWeb.Areas.Admin.Controllers
     {
         //
         // GET: /Admin/Account/
-
         public ActionResult SignIn()
         {
+            Session["returnurl"] = Request.QueryString["ReturnUrl"];
             ViewBag.err = Request.QueryString["err"];
             return View();
         }
@@ -21,11 +21,19 @@ namespace CSRMWeb.Areas.Admin.Controllers
         {
             if (inputEmail == "admin" && inputPassword == "1")
             {
-                return RedirectToAction("Index", "Manager");
+                Session["adminid"] = 1;
+                if (string.IsNullOrEmpty(Session["returnurl"].ToString()))
+                {
+                    return RedirectToAction("hyjj", "Manager");
+                }
+                else
+                {
+                    return Redirect(Session["returnurl"].ToString());
+                }
             }
             else
             {
-                return RedirectToAction("SignIn", new { err = 2 });
+                return RedirectToAction("SignIn", new { err = 2, ReturnUrl = Session["returnurl"].ToString() });
             }
         }
     }
