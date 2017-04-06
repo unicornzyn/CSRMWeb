@@ -301,7 +301,7 @@
 	width:100%;
 	height:auto;
 }
-.huiyijiangyi-main-top3 li a{
+.huiyijiangyi-main-top3 li>a{
 	margin-top:10px;
 	display:block;
 	width:97%;

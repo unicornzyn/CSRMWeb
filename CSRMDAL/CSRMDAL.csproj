@@ -91,6 +91,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\huiyiricheng_ext.cs" />
+    <Compile Include="Model\jiaotong_ext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="province.cs">
       <DependentUpon>Model.tt</DependentUpon>

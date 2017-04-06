@@ -12,6 +12,7 @@
     <div class="form-group">
         <label for="txtname" class="col-sm-2 control-label">姓名</label>
         <div class="col-sm-10">
+            <input type="hidden" id="txtid" name="txtid" value="0" />
             <input type="text" class="form-control" id="txtname" name="txtname" placeholder="姓名" data-val="true" data-val-required="必填" data-val-length-max="100" data-val-length="最多100个字符" />
             <span data-valmsg-for="txtname" data-valmsg-replace="true" class="error"></span>
         </div>
@@ -26,15 +27,16 @@
     <div class="form-group">
         <label for="txtinfo" class="col-sm-2 control-label">简介</label>
         <div class="col-sm-10">
-            <textarea class="form-control" rows="8" id="txtinfo" name="txtinfo" placeholder="简介" data-val="true" data-val-required="必填" data-val-length-max="200" data-val-length="最多200个字符"></textarea>
+            <textarea class="form-control" rows="4" id="txtinfo" name="txtinfo" placeholder="简介" data-val="true" data-val-required="必填" data-val-length-max="200" data-val-length="最多200个字符"></textarea>
             <span data-valmsg-for="txtinfo" data-valmsg-replace="true" class="error"></span>
         </div>
     </div>
     <div class="form-group">
         <label for="txtimg" class="col-sm-2 control-label">头像</label>
         <div class="col-sm-10">            
+            <img src="" style="width:100px;height:100px;" id="img" />
             <input type="file" class="form-control" id="inputfile" />
-            <input type="hidden" data-val="true" data-val-required="必填" id="txtimg" name="txtimg" value="" style="width:0;height:0;margin:0;padding:0;" />
+            <input type="hidden" data-val="true" data-val-required="必填" id="txtimg" name="txtimg" value="" />
             <span data-valmsg-for="txtimg" data-valmsg-replace="true" class="error"></span>
         </div>
     </div>
@@ -45,19 +47,83 @@
     </div>
 }
 
+<h2 class="sub-header">讲者介绍</h2>
+<div class="table-responsive">
+    <table class="table table-striped" id="tb">
+        <thead>
+            <tr>
+                <th>姓名</th> 
+                <th>单位</th>
+                <th>简介</th>
+                <th>头像</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myconfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">系统提示</h4>
+            </div>
+            <div class="modal-body">
+                <p>确定删除吗?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="btndel" data-id="0">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
 @section scripts
 {
     <script type="text/javascript">
-
+        function callback() {
+            $("#txtid").val(0);
+            $("#txtname").val("");
+            $("#txtunit").val("");
+            $("#txtinfo").val("");
+            $("#txtimg").val("");
+            $("#img").attr("src", "");
+        }
         function getinfo() {
-            getdata("/Admin/Manager/lxwmGet", { areaid: $("#selarea").val() }, function (json) {
-                $("#txttitle").val(json.title);
-                $("#txtinfo").val(json.content);
-                $("#txtemail").val(json.email);
+            getdata("/Admin/Manager/jzjsGet", { areaid: $("#selarea").val() }, function (json) {
+                $("#tb>tbody").empty();
+                $.each(json, function (i, n) {
+                    var tr = $("<tr><td>" + n.name + "</td><td>" + n.unitname + "</td><td>" + n.info + "</td><td><img style='width:100px;height:100px' src='/upload/" + n.img + "' /></td><td><button type=\"button\" class=\"btn btn-link btnedit\">编辑</button>&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-link btndel\">删除</button></td></tr>");
+                    tr.find(".btnedit").click(function () {
+                        $("#txtid").val(n.id);
+                        $("#txtname").val(n.name);
+                        $("#txtunit").val(n.unitname);
+                        $("#txtinfo").val(n.info);
+                        $("#txtimg").val(n.img);
+                        $("#img").attr("src", "/upload/" + n.img);
+                    });
+                    tr.find(".btndel").click(function () {
+                        $("#btndel").data("id", n.id);
+                        $('#myconfirm').modal();
+                    });
+
+                    $("#tb>tbody").append(tr);
+                });
             });
         }
         $(function () {
-            //getinfo();
+            getinfo();
             $("#inputfile").uploadify({
                 'swf': '/Areas/Admin/Scripts/uploadify/uploadify.swf',
                 'uploader': '/Admin/Manager/upload',
@@ -66,7 +132,16 @@
                 'multi': false,
                 'onUploadSuccess': function (file, data, respone) {
                     $("#txtimg").val(data);
+                    $("#img").attr("src", "/upload/" + data);
                 }
+            });
+
+            $("#btndel").click(function () {
+                postdata("/Admin/Manager/jzjsDel", { id: $("#btndel").data("id") }, function (json) {
+                    alert("删除成功");
+                    $('#myconfirm').modal("hide");
+                    getinfo();
+                });
             });
         });
     </script>

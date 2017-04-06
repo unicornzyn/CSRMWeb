@@ -64,7 +64,11 @@ namespace CSRMWeb.Controllers
         [CustAuthorizeAttribute()]
         public ActionResult huiyijiangyi()
         {
-            return View();
+            var areaid = Convert.ToInt32(Session["areaid"]);
+            DBConnection db = new DBConnection();
+            var list = db.huiyijiangyi.Where(a => a.areaid == areaid).ToList();
+
+            return View(list);
         }
         [CustAuthorizeAttribute()]
         public ActionResult huiyirichen()
@@ -79,12 +83,21 @@ namespace CSRMWeb.Controllers
         [CustAuthorizeAttribute()]
         public ActionResult jiangzhejieshao()
         {
-            return View();
+            var areaid = Convert.ToInt32(Session["areaid"]);
+            DBConnection db = new DBConnection();
+            var list = db.jiangzhejieshao.Where(a => a.areaid == areaid).ToList();
+
+            return View(list);
         }
         [CustAuthorizeAttribute()]
         public ActionResult jiaotong()
         {
-            return View();
+            var areaid = Convert.ToInt32(Session["areaid"]);
+            DBConnection db = new DBConnection();
+            CSRMDAL.Model.jiaotong_ext x = new CSRMDAL.Model.jiaotong_ext();
+            x.o = db.jiaotong.FirstOrDefault(a => a.areaid == areaid);
+            x.list = db.jiaotong_c.Where(a => a.pid == x.o.id).ToList();
+            return View(x);
         }
         [CustAuthorizeAttribute()]
         public ActionResult lianxiwomen()
@@ -98,7 +111,20 @@ namespace CSRMWeb.Controllers
         [CustAuthorizeAttribute()]
         public ActionResult shipin()
         {
-            return View();
+            var areaid = Convert.ToInt32(Session["areaid"]);
+            DBConnection db = new DBConnection();
+
+            var list = db.shipin.Where(a => a.areaid == areaid).OrderBy(a => Guid.NewGuid()).ToList();
+            if (list.Count() > 0)
+            {
+                ViewBag.img = "/upload/" + list.First().img;
+                list.Remove(list.First());
+            }
+            else
+            {
+                ViewBag.img = "";
+            }
+            return View(list);
         }
         [CustAuthorizeAttribute()]
         public ActionResult zhinan()

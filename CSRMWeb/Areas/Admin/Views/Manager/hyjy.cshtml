@@ -1,7 +1,148 @@
 ﻿@{
     ViewBag.menu = 3;
-    ViewBag.Title = "hyjy";
+    ViewBag.Title = "会议讲义";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>会议讲义</h2>
+@using (Ajax.BeginForm("hyjyPost", "Manager", new { area = "Admin" }, new AjaxOptions { OnSuccess = "onsuccess" }, new { @class = "form-horizontal" }))
+{
+    <h1 class="page-header">会议讲义</h1>
+
+    @Html.Partial("_AreaSelect")
+    <div class="form-group">
+        <label for="txtname" class="col-sm-2 control-label">课件名称</label>
+        <div class="col-sm-10">
+            <input type="hidden" id="txtid" name="txtid" value="0" />
+            <input type="text" class="form-control" id="txtname" name="txtname" placeholder="课件名称" data-val="true" data-val-required="必填" data-val-length-max="100" data-val-length="最多100个字符" />
+            <span data-valmsg-for="txtname" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtauthor" class="col-sm-2 control-label">讲者</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="txtauthor" name="txtauthor" placeholder="讲者" data-val="true" data-val-required="必填" data-val-length-max="100" data-val-length="最多100个字符" />
+            <span data-valmsg-for="txtauthor" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtunit" class="col-sm-2 control-label">单位</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="txtunit" name="txtunit" placeholder="单位" data-val="true" data-val-required="必填" data-val-length-max="100" data-val-length="最多100个字符" />
+            <span data-valmsg-for="txtunit" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>    
+    <div class="form-group">
+        <label for="txtimg" class="col-sm-2 control-label">课件</label>
+        <div class="col-sm-10">
+            <a href="" target="_blank" id="img">查看课件</a>
+            <input type="file" class="form-control" id="inputfile" />
+            <input type="hidden" data-val="true" data-val-required="必填" id="txtimg" name="txtimg" value="" />
+            <span data-valmsg-for="txtimg" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">保 存</button>
+        </div>
+    </div>
+}
+
+<h2 class="sub-header">会议讲义</h2>
+<div class="table-responsive">
+    <table class="table table-striped" id="tb">
+        <thead>
+            <tr>
+                <th>课件名称</th>
+                <th>讲者</th>
+                <th>单位</th>
+                <th>课件</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myconfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">系统提示</h4>
+            </div>
+            <div class="modal-body">
+                <p>确定删除吗?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="btndel" data-id="0">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        function callback() {
+            $("#txtid").val(0);
+            $("#txtname").val("");
+            $("#txtunit").val("");
+            $("#txtauthor").val("");
+            $("#txtimg").val("");
+            $("#img").attr("href", "");
+        }
+        function getinfo() {
+            getdata("/Admin/Manager/hyjyGet", { areaid: $("#selarea").val() }, function (json) {
+                $("#tb>tbody").empty();
+                $.each(json, function (i, n) {
+                    var tr = $("<tr><td>" + n.name + "</td><td>" + n.author + "</td><td>" + n.unit + "</td><td><a href='/upload/" + n.pptname + "' target='_blank'>查看课件</a></td><td><button type=\"button\" class=\"btn btn-link btnedit\">编辑</button>&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-link btndel\">删除</button></td></tr>");
+                    tr.find(".btnedit").click(function () {
+                        $("#txtid").val(n.id);
+                        $("#txtname").val(n.name);
+                        $("#txtunit").val(n.unit);
+                        $("#txtauthor").val(n.author);
+                        $("#txtimg").val(n.pptname);
+                        $("#img").attr("href", "/upload/" + n.pptname);
+                    });
+                    tr.find(".btndel").click(function () {
+                        $("#btndel").data("id", n.id);
+                        $('#myconfirm').modal();
+                    });
+
+                    $("#tb>tbody").append(tr);
+                });
+            });
+        }
+        $(function () {
+            getinfo();
+            $("#inputfile").uploadify({
+                'swf': '/Areas/Admin/Scripts/uploadify/uploadify.swf',
+                'uploader': '/Admin/Manager/upload',
+                'buttonText': '<div>选择文件</div>',
+                'fileTypeExts': '*.pdf;',
+                'multi': false,
+                'onUploadSuccess': function (file, data, respone) {
+                    $("#txtimg").val(data);
+                    $("#img").attr("href", "/upload/" + data);
+                }
+            });
+
+            $("#btndel").click(function () {
+                postdata("/Admin/Manager/hyjyDel", { id: $("#btndel").data("id") }, function (json) {
+                    alert("删除成功");
+                    $('#myconfirm').modal("hide");
+                    getinfo();
+                });
+            });
+        });
+    </script>
+}

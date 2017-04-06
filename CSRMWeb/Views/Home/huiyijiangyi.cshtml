@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<CSRMDAL.huiyijiangyi>
+@{
     ViewBag.Title = "huiyijiangyi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,51 +7,19 @@
 <div class="zaixianbao-main">
     <div class="huiyijiangyi-main-top1">会议讲义</div>
     <ul class="huiyijiangyi-main-top3">
-        <li>
-            <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义1</a>
-            <ul class="huiyijiangyi-main-top3-ul">
-                <li><span>课件名称</span><span></span></li>
-                <li><span>讲者</span><span></span></li>
-                <li><span>单位</span><span></span></li>
-                <li>课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容。</li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义1</a>
-            <ul class="huiyijiangyi-main-top3-ul">
-                <li><span>课件名称</span><span></span></li>
-                <li><span>讲者</span><span></span></li>
-                <li><span>单位</span><span></span></li>
-                <li>课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容。</li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义1</a>
-            <ul class="huiyijiangyi-main-top3-ul">
-                <li><span>课件名称</span><span></span></li>
-                <li><span>讲者</span><span></span></li>
-                <li><span>单位</span><span></span></li>
-                <li>课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容。</li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义1</a>
-            <ul class="huiyijiangyi-main-top3-ul">
-                <li><span>课件名称</span><span></span></li>
-                <li><span>讲者</span><span></span></li>
-                <li><span>单位</span><span></span></li>
-                <li>课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容。</li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义1</a>
-            <ul class="huiyijiangyi-main-top3-ul">
-                <li><span>课件名称</span><span></span></li>
-                <li><span>讲者</span><span></span></li>
-                <li><span>单位</span><span></span></li>
-                <li>课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容课件详细PPT内容。</li>
-            </ul>
-        </li>
+        @{int i = 1;}
+        @foreach (var o in Model)
+        {
+            
+            <li>
+                <a href="javascript:;" class="huiyijiangyi-main-top3-a">会议讲义@(i++)</a>
+                <ul class="huiyijiangyi-main-top3-ul">
+                    <li><span><a href="/upload/@o.pptname">@o.name</a></span><span></span></li>
+                    <li><span>@o.author</span><span></span></li>
+                    <li><span>@o.unit</span><span></span></li>
+                </ul>
+            </li>
+        }
     </ul>
 </div>
 
@@ -80,4 +49,4 @@
         })
 
     </script>
-    }
+}

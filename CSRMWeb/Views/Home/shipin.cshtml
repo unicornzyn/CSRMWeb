@@ -1,19 +1,25 @@
-﻿@{
+﻿@model List<CSRMDAL.shipin>
+@{
     ViewBag.Title = "shipin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="shiping-main"><img src="/Images/shiping_bg_02.jpg" /></div>
+<div class="shiping-main"><img src="@ViewBag.img" /></div>
 <div class="shiping-main1 index-content"><a href="javascript::">最热门</a><a href="javascript::">更多</a></div>
 <ul class="shiping-main2 index-content">
-    <li class="index-content">
-        <a href="javascript:;"><img src="/Images/bn-bg_05.jpg" /></a>
-        <a href="javascript:;"><img src="/Images/bn-bg_08.jpg" /></a>
-    </li>
-    <li class="index-content">
-        <a href="javascript:;"><img src="/Images/bn-bg_12.jpg" /></a>
-        <a href="javascript:;"><img src="/Images/bn-bg_13.jpg" /></a>
-    </li>
-
+    @{
+        int len = Model.Count / 2;
+        if (Model.Count % 2 == 1) { len++; }
+    }
+    @for (var i = 0; i < len; i++)
+    {
+        <li class="index-content">
+            <a href="javascript:;"><img src="/upload/@(Model.ElementAt(i * 2).img)" /></a>
+            @if(Model.Count > i * 2 + 1)
+            {
+            <a href="javascript:;"><img src="/upload/@(Model.ElementAt(i * 2 + 1).img)" /></a>
+            }
+        </li>
+    }
 </ul>
 

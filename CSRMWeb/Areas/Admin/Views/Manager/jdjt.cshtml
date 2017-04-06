@@ -1,7 +1,187 @@
 ﻿@{
     ViewBag.menu = 6;
-    ViewBag.Title = "jdjt";
+    ViewBag.Title = "酒店交通";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>酒店交通</h2>
+@using (Ajax.BeginForm("jdjtPost", "Manager", new { area = "Admin" }, new AjaxOptions { OnSuccess = "onsuccess" }, new { @class = "form-horizontal" }))
+{
+    <h1 class="page-header">酒店交通</h1>
+
+    @Html.Partial("_AreaSelect")
+
+    <div class="form-group">
+        <label for="txtimg" class="col-sm-2 control-label">路线图</label>
+        <div class="col-sm-10">
+            <img src="" style="width:100px;height:100px;" id="img" />
+            <input type="file" class="form-control" id="inputfile" />
+            <input type="hidden" data-val="true" data-val-required="必填" id="txtimg" name="txtimg" value="" />
+            <span data-valmsg-for="txtimg" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">保 存</button>&nbsp;&nbsp;<button type="button" class="btn btn-default" id="btnAdd">添 加</button>
+        </div>
+    </div>
+}
+
+
+<h2 class="sub-header">路线详情</h2>
+<div class="table-responsive">
+    <table class="table table-striped" id="tb">
+        <thead>
+            <tr>
+                <th>标题</th>
+                <th>内容</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@using (Ajax.BeginForm("jdjtAddSave", "Manager", new { area = "Admin" }, new AjaxOptions { OnSuccess = "onsuccess1" }, new { id = "form2" }))
+{
+    <input type="hidden" id="pid" name="pid" value="0" />
+    <input type="hidden" id="cid" name="cid" value="0" />
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">酒店交通管理</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="txt1" class="col-sm-2 control-label">标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="txt1" name="txt1" placeholder="标题" data-val="true" data-val-required="必填" data-val-length-max="100" data-val-length="最多100个字符" />
+                                <span data-valmsg-for="txt1" data-valmsg-replace="true" class="error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtinfo" class="col-sm-2 control-label">内容</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="8" id="txtinfo" name="txtinfo" placeholder="内容" data-val="true" data-val-required="必填" data-val-length-max="100" data-val-length="最多100个字符"></textarea>
+                                <span data-valmsg-for="txtinfo" data-valmsg-replace="true" class="error"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" id="btnAddSave">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+}
+<div class="modal fade" tabindex="-1" role="dialog" id="myconfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">系统提示</h4>
+            </div>
+            <div class="modal-body">
+                <p>确定删除吗?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="btndel" data-id="0">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+
+        function getinfo() {
+            getdata("/Admin/Manager/jdjtGet",{ areaid: $("#selarea").val() },function(json){
+                $("#pid").val(json.o.id);
+                if (json.o.id > 0) {
+                    $("#img").attr("src", "/upload/" + json.o.img);
+                    $("#txtimg").val(json.o.img);
+                } else {
+                    $("#img").attr("src", "");
+                    $("#txtimg").val("");
+                }
+                
+                $("#tb>tbody").empty();
+                $.each(json.list, function (i, n) {
+                    var tr = $("<tr><td>" + n.title + "</td><td>" + n.content + "</td><td><button type=\"button\" class=\"btn btn-link btnedit\">编辑</button>&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-link btndel\">删除</button></td></tr>");
+                    tr.find(".btnedit").click(function () {
+                        $("#txt1").val(n.title);
+                        $("#txtinfo").val(n.content);
+                        $("#cid").val(n.id);
+                        $('#myModal').modal();
+                    });
+                    tr.find(".btndel").click(function () {
+                        $("#btndel").data("id",n.id);
+                        $('#myconfirm').modal();
+                    });
+
+                    $("#tb>tbody").append(tr);
+                });
+            });
+        }
+
+        function onsuccess1(data) {
+            if (data.Result == 0) {
+                alert(data.Msg);
+                window.location.href = '/Admin/Account/SingIn';
+            } else {
+                alert(data.Msg);
+                $('#myModal').modal("hide");
+                getinfo();
+            }
+        }
+
+        $(function () {
+
+            getinfo();
+
+            $("#btnAdd").click(function () {
+                if ($("#pid").val() == 0) {
+                    $("span[data-valmsg-for='txtimg'").text("先点保存按钮");
+                } else {
+                    $("#txt1,#txtinfo").val("");
+                    $("#cid").val(0);
+                    $('#myModal').modal();
+                }
+            });
+
+
+            $("#btndel").click(function () {
+                postdata("/Admin/Manager/jdjtDel", { id: $("#btndel").data("id") }, function (json) {
+                    alert("删除成功");
+                    $('#myconfirm').modal("hide");
+                    getinfo();
+                });
+            });
+
+            $("#inputfile").uploadify({
+                'swf': '/Areas/Admin/Scripts/uploadify/uploadify.swf',
+                'uploader': '/Admin/Manager/upload',
+                'buttonText': '<div>选择文件</div>',
+                'fileTypeExts': '*.jpg;*.png;*.jpeg;*.bmp;',
+                'multi': false,
+                'onUploadSuccess': function (file, data, respone) {
+                    $("#txtimg").val(data);
+                    $("#img").attr("src", "/upload/" + data);
+                }
+            });
+        });
+    </script>
+}
+
+
