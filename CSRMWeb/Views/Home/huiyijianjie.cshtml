@@ -1,10 +1,11 @@
-﻿@{
+﻿@model CSRMDAL.huiyijianjie
+@{
     ViewBag.Title = "huiyijianjie";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="zaixianbao-main">
     <div class="huiyijianjie-main-top1">会议简介</div>
-    <p class="huiyijianjie-main">随着人类辅助生殖技术和伦理学的不断进步以及我国生育政策的调整，辅助生殖领域的临床需求日益迫切。进一步规范生殖中心从业人员的诊疗行为，对于保护人民群众健康，特别是保护妇女和后代的健康，提高出生人口素质、促进家庭幸福和社会和谐具有重要意义。为进一步推动我国辅助生殖领域规范化治疗，提高辅助生殖领域的规范化治疗水平，提升辅助生殖领域相关从业人员和不孕症诊疗相关人员的从业水平，卫计委医药卫生科技发展研究中心邀请中华医学会生殖医学分会参与编写行业指南共识的有关专家，对国内相关领域医务工作者进行指南共识内容解读，并于017年4月21日在福州、上海、北京、昆明和太原五个城市同时举行《中华医学会生殖医学规范指南中国行》城市巡讲会。本会议由北京华医网科技股份有限公司承办并全权负责项目具体执行工作。</p>
+    <p class="huiyijianjie-main">@Model.info</p>
 </div>
 

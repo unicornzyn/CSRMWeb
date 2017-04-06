@@ -1,7 +1,55 @@
 ﻿@{
     ViewBag.menu = 8;
-    ViewBag.Title = "lxwm";
+    ViewBag.Title = "联系我们";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>联系我们</h2>
+@using (Ajax.BeginForm("lxwmPost", "Manager", new { area = "Admin" }, new AjaxOptions { OnSuccess = "onsuccess" }, new { @class = "form-horizontal" }))
+{
+    <h1 class="page-header">联系我们</h1>
+
+    @Html.Partial("_AreaSelect")
+    <div class="form-group">
+        <label for="txttitle" class="col-sm-2 control-label">姓名</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="txttitle" name="txttitle" placeholder="姓名" data-val="true" data-val-required="必填" data-val-length-max="100" data-val-length="最多100个字符" />
+            <span data-valmsg-for="txttitle" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtinfo" class="col-sm-2 control-label">电话</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="txtinfo" name="txtinfo" placeholder="电话" data-val="true" data-val-required="必填" data-val-length-max="200" data-val-length="最多200个字符" />
+            <span data-valmsg-for="txtinfo" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtemail" class="col-sm-2 control-label">邮箱</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="txtemail" name="txtemail" placeholder="邮箱" data-val="true" data-val-required="必填" data-val-length-max="100" data-val-length="最多100个字符" />
+            <span data-valmsg-for="txtemail" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">保 存</button>
+        </div>
+    </div>
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        function getinfo() {
+            getdata("/Admin/Manager/lxwmGet", { areaid: $("#selarea").val() }, function (json) {
+                $("#txttitle").val(json.title);
+                $("#txtinfo").val(json.content);
+                $("#txtemail").val(json.email);
+            });
+        }
+        $(function () {
+            getinfo();
+        });
+    </script>
+}

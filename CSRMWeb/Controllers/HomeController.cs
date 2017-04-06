@@ -17,6 +17,7 @@ namespace CSRMWeb.Controllers
 #if DEBUG
             ViewBag.isreg = 1;
             Session["openid"] = "1";
+            Session["areaid"] = 1;
 #else
             var wx = new OpenAuthWX(System.Configuration.ConfigurationManager.AppSettings["wxappid"], System.Configuration.ConfigurationManager.AppSettings["wxappsecret"], 2);
 
@@ -32,9 +33,10 @@ namespace CSRMWeb.Controllers
 
 
             DBConnection db = new DBConnection();
-
-            if (db.users.Where(a => a.openid == openid).Count() > 0)
+            var o = db.users.FirstOrDefault(a => a.openid == openid);
+            if (o != null)
             {
+                Session["areaid"] = o.areaid;
                 ViewBag.isreg = 1;
             }
             else
@@ -53,7 +55,11 @@ namespace CSRMWeb.Controllers
         [CustAuthorizeAttribute()]
         public ActionResult huiyijianjie() 
         {
-            return View();
+            var areaid = Convert.ToInt32(Session["areaid"]);
+            DBConnection db = new DBConnection();
+            var o = db.huiyijianjie.FirstOrDefault(a => a.areaid == areaid);
+
+            return View(o);
         }
         [CustAuthorizeAttribute()]
         public ActionResult huiyijiangyi()
@@ -63,7 +69,12 @@ namespace CSRMWeb.Controllers
         [CustAuthorizeAttribute()]
         public ActionResult huiyirichen()
         {
-            return View();
+            var areaid = Convert.ToInt32(Session["areaid"]);
+            DBConnection db = new DBConnection();
+            CSRMDAL.Model.huiyiricheng_ext x = new CSRMDAL.Model.huiyiricheng_ext();
+            x.o = db.huiyirichen.FirstOrDefault(a => a.areaid == areaid);
+            x.list = db.huiyirichen_c.Where(a => a.pid == x.o.id).ToList();
+            return View(x);
         }
         [CustAuthorizeAttribute()]
         public ActionResult jiangzhejieshao()
@@ -78,7 +89,11 @@ namespace CSRMWeb.Controllers
         [CustAuthorizeAttribute()]
         public ActionResult lianxiwomen()
         {
-            return View();
+            var areaid = Convert.ToInt32(Session["areaid"]);
+            DBConnection db = new DBConnection();
+            var o = db.lianxiwomen.FirstOrDefault(a => a.areaid == areaid);
+
+            return View(o);
         }
         [CustAuthorizeAttribute()]
         public ActionResult shipin()
@@ -88,7 +103,11 @@ namespace CSRMWeb.Controllers
         [CustAuthorizeAttribute()]
         public ActionResult zhinan()
         {
-            return View();
+            var areaid = Convert.ToInt32(Session["areaid"]);
+            DBConnection db = new DBConnection();
+            var o = db.zhinan.FirstOrDefault(a => a.areaid == areaid);
+
+            return View(o);
         }
         [CustAuthorizeAttribute()]
         public ActionResult zaixianbaoming()

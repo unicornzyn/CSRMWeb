@@ -28,5 +28,15 @@ namespace CSRMDAL
         public virtual DbSet<city> city { get; set; }
         public virtual DbSet<province> province { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<huiyijiangyi> huiyijiangyi { get; set; }
+        public virtual DbSet<huiyijianjie> huiyijianjie { get; set; }
+        public virtual DbSet<huiyirichen> huiyirichen { get; set; }
+        public virtual DbSet<huiyirichen_c> huiyirichen_c { get; set; }
+        public virtual DbSet<jiangzhejieshao> jiangzhejieshao { get; set; }
+        public virtual DbSet<jiaotong> jiaotong { get; set; }
+        public virtual DbSet<jiaotong_c> jiaotong_c { get; set; }
+        public virtual DbSet<lianxiwomen> lianxiwomen { get; set; }
+        public virtual DbSet<shipin> shipin { get; set; }
+        public virtual DbSet<zhinan> zhinan { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="meork.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="meork.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="city">
           <Key>
             <PropertyRef Name="id" />
@@ -13,12 +13,106 @@
           <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="parentid" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="huiyijiangyi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areaid" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="author" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="unit" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="pptname" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="addtime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="huiyijianjie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areaid" Type="int" Nullable="false" />
+          <Property Name="info" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="addtime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="huiyirichen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areaid" Type="int" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="time" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="areastr" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="addtime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="huiyirichen_c">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pid" Type="int" Nullable="false" />
+          <Property Name="time" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="author" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="addtime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jiangzhejieshao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areaid" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="unitname" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="info" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="img" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="addtime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jiaotong">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areaid" Type="int" Nullable="false" />
+          <Property Name="img" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="addtime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jiaotong_c">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pid" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="addtime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lianxiwomen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areaid" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="addtime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="province">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="shipin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areaid" Type="int" Nullable="false" />
+          <Property Name="img" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="addtime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -39,13 +133,32 @@
           <Property Name="techtitle" Type="varchar" MaxLength="200" />
           <Property Name="addtime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="zhinan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="areaid" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="addtime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="meorkStoreContainer">
           <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="huiyijiangyi" EntityType="Self.huiyijiangyi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="huiyijianjie" EntityType="Self.huiyijianjie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="huiyirichen" EntityType="Self.huiyirichen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="huiyirichen_c" EntityType="Self.huiyirichen_c" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jiangzhejieshao" EntityType="Self.jiangzhejieshao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jiaotong" EntityType="Self.jiaotong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jiaotong_c" EntityType="Self.jiaotong_c" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lianxiwomen" EntityType="Self.lianxiwomen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="province" EntityType="Self.province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shipin" EntityType="Self.shipin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zhinan" EntityType="Self.zhinan" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="meork" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -87,7 +200,121 @@
           <EntitySet Name="city" EntityType="Self.city" />
           <EntitySet Name="province" EntityType="Self.province" />
           <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="huiyijiangyi" EntityType="meork.huiyijiangyi" />
+          <EntitySet Name="huiyijianjie" EntityType="meork.huiyijianjie" />
+          <EntitySet Name="huiyirichen" EntityType="meork.huiyirichen" />
+          <EntitySet Name="huiyirichen_c" EntityType="meork.huiyirichen_c" />
+          <EntitySet Name="jiangzhejieshao" EntityType="meork.jiangzhejieshao" />
+          <EntitySet Name="jiaotong" EntityType="meork.jiaotong" />
+          <EntitySet Name="jiaotong_c" EntityType="meork.jiaotong_c" />
+          <EntitySet Name="lianxiwomen" EntityType="meork.lianxiwomen" />
+          <EntitySet Name="shipin" EntityType="meork.shipin" />
+          <EntitySet Name="zhinan" EntityType="meork.zhinan" />
         </EntityContainer>
+        <EntityType Name="huiyijiangyi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areaid" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="author" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="unit" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="pptname" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="huiyijianjie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areaid" Type="Int32" Nullable="false" />
+          <Property Name="info" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="huiyirichen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areaid" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="areastr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="huiyirichen_c">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pid" Type="Int32" Nullable="false" />
+          <Property Name="time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="author" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="jiangzhejieshao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areaid" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="unitname" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="info" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="img" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="jiaotong">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areaid" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="jiaotong_c">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pid" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="lianxiwomen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areaid" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="shipin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areaid" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="zhinan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="areaid" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -128,6 +355,120 @@
                 <ScalarProperty Name="age" ColumnName="age" />
                 <ScalarProperty Name="techtitle" ColumnName="techtitle" />
                 <ScalarProperty Name="addtime" ColumnName="addtime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="huiyijiangyi">
+            <EntityTypeMapping TypeName="meork.huiyijiangyi">
+              <MappingFragment StoreEntitySet="huiyijiangyi">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="pptname" ColumnName="pptname" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="areaid" ColumnName="areaid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="huiyijianjie">
+            <EntityTypeMapping TypeName="meork.huiyijianjie">
+              <MappingFragment StoreEntitySet="huiyijianjie">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="areaid" ColumnName="areaid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="huiyirichen">
+            <EntityTypeMapping TypeName="meork.huiyirichen">
+              <MappingFragment StoreEntitySet="huiyirichen">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="areastr" ColumnName="areastr" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="areaid" ColumnName="areaid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="huiyirichen_c">
+            <EntityTypeMapping TypeName="meork.huiyirichen_c">
+              <MappingFragment StoreEntitySet="huiyirichen_c">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jiangzhejieshao">
+            <EntityTypeMapping TypeName="meork.jiangzhejieshao">
+              <MappingFragment StoreEntitySet="jiangzhejieshao">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="unitname" ColumnName="unitname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="areaid" ColumnName="areaid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jiaotong">
+            <EntityTypeMapping TypeName="meork.jiaotong">
+              <MappingFragment StoreEntitySet="jiaotong">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="areaid" ColumnName="areaid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jiaotong_c">
+            <EntityTypeMapping TypeName="meork.jiaotong_c">
+              <MappingFragment StoreEntitySet="jiaotong_c">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lianxiwomen">
+            <EntityTypeMapping TypeName="meork.lianxiwomen">
+              <MappingFragment StoreEntitySet="lianxiwomen">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="areaid" ColumnName="areaid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shipin">
+            <EntityTypeMapping TypeName="meork.shipin">
+              <MappingFragment StoreEntitySet="shipin">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="areaid" ColumnName="areaid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zhinan">
+            <EntityTypeMapping TypeName="meork.zhinan">
+              <MappingFragment StoreEntitySet="zhinan">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="areaid" ColumnName="areaid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

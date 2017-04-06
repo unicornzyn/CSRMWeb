@@ -1,7 +1,73 @@
 ﻿@{
     ViewBag.menu = 4;
-    ViewBag.Title = "jzjs";
+    ViewBag.Title = "讲者介绍";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>讲者介绍</h2>
+@using (Ajax.BeginForm("jzjsPost", "Manager", new { area = "Admin" }, new AjaxOptions { OnSuccess = "onsuccess" }, new { @class = "form-horizontal" }))
+{
+    <h1 class="page-header">讲者介绍</h1>
+
+    @Html.Partial("_AreaSelect")
+    <div class="form-group">
+        <label for="txtname" class="col-sm-2 control-label">姓名</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="txtname" name="txtname" placeholder="姓名" data-val="true" data-val-required="必填" data-val-length-max="100" data-val-length="最多100个字符" />
+            <span data-valmsg-for="txtname" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtunit" class="col-sm-2 control-label">单位</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="txtunit" name="txtunit" placeholder="单位" data-val="true" data-val-required="必填" data-val-length-max="100" data-val-length="最多100个字符" />
+            <span data-valmsg-for="txtunit" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtinfo" class="col-sm-2 control-label">简介</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" rows="8" id="txtinfo" name="txtinfo" placeholder="简介" data-val="true" data-val-required="必填" data-val-length-max="200" data-val-length="最多200个字符"></textarea>
+            <span data-valmsg-for="txtinfo" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtimg" class="col-sm-2 control-label">头像</label>
+        <div class="col-sm-10">            
+            <input type="file" class="form-control" id="inputfile" />
+            <input type="hidden" data-val="true" data-val-required="必填" id="txtimg" name="txtimg" value="" style="width:0;height:0;margin:0;padding:0;" />
+            <span data-valmsg-for="txtimg" data-valmsg-replace="true" class="error"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">保 存</button>
+        </div>
+    </div>
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        function getinfo() {
+            getdata("/Admin/Manager/lxwmGet", { areaid: $("#selarea").val() }, function (json) {
+                $("#txttitle").val(json.title);
+                $("#txtinfo").val(json.content);
+                $("#txtemail").val(json.email);
+            });
+        }
+        $(function () {
+            //getinfo();
+            $("#inputfile").uploadify({
+                'swf': '/Areas/Admin/Scripts/uploadify/uploadify.swf',
+                'uploader': '/Admin/Manager/upload',
+                'buttonText': '<div>选择文件</div>',
+                'fileTypeExts': '*.jpg;*.png;*.jpeg;*.bmp;',
+                'multi': false,
+                'onUploadSuccess': function (file, data, respone) {
+                    $("#txtimg").val(data);
+                }
+            });
+        });
+    </script>
+}

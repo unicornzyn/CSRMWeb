@@ -8,6 +8,16 @@
         <EntityTypeShape EntityType="meork.city" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="meork.province" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="meork.users" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="meork.huiyijiangyi" Width="1.5" PointX="3.75" PointY="3.75" />
+        <EntityTypeShape EntityType="meork.huiyijianjie" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="meork.huiyirichen" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="meork.huiyirichen_c" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="meork.jiangzhejieshao" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="meork.jiaotong" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="meork.jiaotong_c" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="meork.lianxiwomen" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="meork.shipin" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="meork.zhinan" Width="1.5" PointX="9.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

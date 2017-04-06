@@ -19,10 +19,10 @@ namespace CSRMWeb.Areas.Admin.Controllers
 
         public ActionResult SignInPost(string inputEmail, string inputPassword)
         {
-            if (inputEmail == "admin" && inputPassword == "1")
+            if (inputEmail == System.Configuration.ConfigurationManager.AppSettings["adminuser"] && inputPassword == System.Configuration.ConfigurationManager.AppSettings["adminpwd"])
             {
                 Session["adminid"] = 1;
-                if (string.IsNullOrEmpty(Session["returnurl"].ToString()))
+                if (Session["returnurl"] == null)
                 {
                     return RedirectToAction("hyjj", "Manager");
                 }

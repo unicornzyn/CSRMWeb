@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CSRMDAL.Model.huiyiricheng_ext
+@{
     ViewBag.Title = "huiyirichen";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,9 +7,9 @@
 <div class="zaixianbao-main">
     <div class="huiyirichen-main-top1">会议日程</div>
     <div class="huiyirichen-main-top2">
-        <p><span>日期：</span><span>2017年4月21日</span></p>
-        <p><span>时间：</span><span>13:00-19:00</span></p>
-        <p><span>地点：</span><span>福州</span></p>
+        <p><span>日期：</span><span>@Model.o.date </span></p>
+        <p><span>时间：</span><span>@Model.o.time </span></p>
+        <p><span>地点：</span><span>@Model.o.areastr </span></p>
     </div>
     <table class="huiyirichen-main-top3" width="90%" height="auto" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -16,49 +17,14 @@
             <th>讲题</th>
             <th>讲者</th>
         </tr>
+        @foreach (var o in Model.list) 
+        { 
         <tr>
-            <td>13:00-14:00</td>
-            <td>启动仪式暨主席致辞</td>
-            <td>孙莹璞教授</td>
-        </tr>
-        <tr>
-            <td>14:00-14:50</td>
-            <td>人类体外受精--胚胎移植实验室操作指南</td>
-            <td>靳镭教授</td>
-        </tr>
-        <tr>
-            <td>14:50-15:40</td>
-            <td>
-                高通量基因测序植入前胚胎遗传学诊断和
-                筛查技术规范
-            </td>
-            <td>徐艳文教授</td>
-        </tr>
-        <tr>
-            <td>15:40-16:30</td>
-            <td>促排卵药物应用规范</td>
-            <td>胡琳莉教授</td>
-        </tr>
-        <tr>
-            <td>16:30-16:50</td>
-            <td>茶歇</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>16:50-17:40</td>
-            <td>多胎妊娠减胎技术规范</td>
-            <td>高颖教授</td>
-        </tr>
-        <tr>
-            <td>17:40-18:30</td>
-            <td>临床专题：IVF高龄人群分层及诊疗策略</td>
-            <td>孙莹璞教授</td>
-        </tr>
-        <tr>
-            <td>18:30-19:00</td>
-            <td>问答环节</td>
-            <td>孙莹璞教授，靳镭教授徐艳文教授，胡琳莉教授高颖教授</td>
-        </tr>
+            <td>@o.time</td>
+            <td>@o.title</td>
+            <td>@o.author</td>
+        </tr>       
+        }
     </table>
     <div style="padding-bottom:20px"></div>
 </div>

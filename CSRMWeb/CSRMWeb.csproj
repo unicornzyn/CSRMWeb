@@ -149,6 +149,11 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Content\dashboard.css" />
     <Content Include="Areas\Admin\Content\signin.css" />
+    <Content Include="Areas\Admin\Scripts\uploadify\jquery.uploadify.js" />
+    <Content Include="Areas\Admin\Scripts\uploadify\jquery.uploadify.min.js" />
+    <Content Include="Areas\Admin\Scripts\uploadify\uploadify-cancel.png" />
+    <Content Include="Areas\Admin\Scripts\uploadify\uploadify.css" />
+    <Content Include="Areas\Admin\Scripts\uploadify\uploadify.swf" />
     <Content Include="Content\base.css" />
     <Content Include="Content\index.css" />
     <Content Include="Global.asax" />
