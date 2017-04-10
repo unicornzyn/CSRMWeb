@@ -8,10 +8,17 @@
 </head>
 <body>
     <div class="index-warp">
+        @if (Request.Url.ToString().ToLower().IndexOf("/home/index") < 0)
+        {
+            <div class="index-nav">
+                <a href="javascript:window.history.back();"><img src="~/Images/index_fanhui_bg_09.png"></a>
+                <a href="javascript:;"></a>
+            </div>
+        }
         <div class="index-banner">
-            <img src="~/Images/banner.jpg" />
+            <img src="~/Images/banner_1.jpg" />
         </div>
-        @RenderBody()       
+        @RenderBody()
         <div class="index-fotter">华医网技术服务平台 @@ www.91huayi.com</div>
     </div>
     @Scripts.Render("~/bundles/jquery")

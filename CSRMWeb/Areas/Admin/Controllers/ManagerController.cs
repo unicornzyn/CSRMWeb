@@ -23,11 +23,18 @@ namespace CSRMWeb.Areas.Admin.Controllers
         /// <returns></returns>
         public ActionResult hyjj()
         {
-            return View();
+            var db = new DBConnection();
+            var o = db.huiyijianjie.FirstOrDefault(a => a.areaid == 1);
+            if (o == null)
+            {
+                o = new huiyijianjie();
+            }
+            return View(o);
         }
+        [ValidateInput(false)]
         public JsonResult hyjjPost()
         {
-            var areaid = Convert.ToInt32(Request.Form["selarea"]);
+            var areaid = 1;
             var txtinfo = Request.Form["txtinfo"];
 
             var db = new DBConnection();
@@ -543,6 +550,68 @@ namespace CSRMWeb.Areas.Admin.Controllers
             var filename = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
             file.SaveAs(Server.MapPath("~/upload/") + filename);
             return filename;
+        }
+
+        public void UE() 
+        {
+            Handler action = null;
+            switch (Request["action"])
+            {
+                case "config":
+                    action = new ConfigHandler(HttpContext);
+                    break;
+                //case "uploadimage":
+                //    action = new UploadHandler(context, new UploadConfig()
+                //    {
+                //        AllowExtensions = Config.GetStringList("imageAllowFiles"),
+                //        PathFormat = Config.GetString("imagePathFormat"),
+                //        SizeLimit = Config.GetInt("imageMaxSize"),
+                //        UploadFieldName = Config.GetString("imageFieldName")
+                //    });
+                //    break;
+                //case "uploadscrawl":
+                //    action = new UploadHandler(context, new UploadConfig()
+                //    {
+                //        AllowExtensions = new string[] { ".png" },
+                //        PathFormat = Config.GetString("scrawlPathFormat"),
+                //        SizeLimit = Config.GetInt("scrawlMaxSize"),
+                //        UploadFieldName = Config.GetString("scrawlFieldName"),
+                //        Base64 = true,
+                //        Base64Filename = "scrawl.png"
+                //    });
+                //    break;
+                //case "uploadvideo":
+                //    action = new UploadHandler(context, new UploadConfig()
+                //    {
+                //        AllowExtensions = Config.GetStringList("videoAllowFiles"),
+                //        PathFormat = Config.GetString("videoPathFormat"),
+                //        SizeLimit = Config.GetInt("videoMaxSize"),
+                //        UploadFieldName = Config.GetString("videoFieldName")
+                //    });
+                //    break;
+                //case "uploadfile":
+                //    action = new UploadHandler(context, new UploadConfig()
+                //    {
+                //        AllowExtensions = Config.GetStringList("fileAllowFiles"),
+                //        PathFormat = Config.GetString("filePathFormat"),
+                //        SizeLimit = Config.GetInt("fileMaxSize"),
+                //        UploadFieldName = Config.GetString("fileFieldName")
+                //    });
+                //    break;
+                //case "listimage":
+                //    action = new ListFileManager(context, Config.GetString("imageManagerListPath"), Config.GetStringList("imageManagerAllowFiles"));
+                //    break;
+                //case "listfile":
+                //    action = new ListFileManager(context, Config.GetString("fileManagerListPath"), Config.GetStringList("fileManagerAllowFiles"));
+                //    break;
+                //case "catchimage":
+                //    action = new CrawlerHandler(context);
+                //    break;
+                default:
+                    action = new NotSupportedHandler(HttpContext);
+                    break;
+            }
+            action.Process();
         }
 
         private string GetAreaName(int areaid)

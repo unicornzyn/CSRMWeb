@@ -118,6 +118,7 @@
 	background:url(../images/baoming_bg_02.png) no-repeat center center;
 	background-size:cover;
 	min-height:318px;
+	position:relative;
 }
 .zaixianbao-main-top1{
 	width:72%;
@@ -207,6 +208,7 @@
 	font-family:"黑体";
 	color:#555555;
 	line-height:24px;
+	
 }
 .huiyijianjie-main-top1{
 	width:72%;
@@ -220,6 +222,26 @@
 	padding:25px 0 25px 18%;
 	background:url(../images/huiyijianjie_bg.png) no-repeat left center;
 	background-size:50px 51px;
+}
+.zaixianbao-main-a{
+	display:block;
+	width:120px;
+	height:20px;
+	font-size:14px;
+	font-family:"黑体";
+	color:#0fa3fd;
+	position:absolute;
+	right:5%;
+	top:32px;
+}
+.text-mingxi{
+	width:80%;
+	background:#fff;
+	margin:20% 0 0 10%;
+}
+.text-mingxi img{
+	width:100%;
+	height:auto;
 }
 /*==========================会议日程*/
 .huiyirichen-main-top1{
@@ -238,12 +260,20 @@
 .huiyirichen-main-top2{
 	width:90%;
 	height:auto;
-	padding:20px 5%;
+	padding:15px 5%;
+	padding-bottom:5px;
 }
-.huiyirichen-main-top2 p{
-	font-size:16px;
+.huiyirichen-main-top2 a{
+	display:block;
+	font-size:18px;
 	font-family:"黑体";
 	color:#0fa3fd;
+	padding-bottom:5px;
+}
+.huiyirichen-main-top2 p{
+	font-size:14px;
+	font-family:"黑体";
+	color:#555555;
 	padding-top:5px;
 }
 .huiyirichen-main-top3{
@@ -278,6 +308,16 @@
 	width:30%;
 	border-right:none;
 }
+.huiyirichen-main-header{
+	width:90%;
+	height:30px;
+	
+	padding:0 5%;
+	font-size:18px;
+	font-family:"黑体";
+	color:#0fa3fd;
+	padding-top:15px;
+}
 /*==========================会议讲义*/
 .huiyijiangyi-main-top1{
 	width:72%;
@@ -301,7 +341,7 @@
 	width:100%;
 	height:auto;
 }
-.huiyijiangyi-main-top3 li>a{
+.huiyijiangyi-main-top3 li a{
 	margin-top:10px;
 	display:block;
 	width:97%;

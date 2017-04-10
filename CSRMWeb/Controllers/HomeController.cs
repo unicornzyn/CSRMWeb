@@ -17,7 +17,7 @@ namespace CSRMWeb.Controllers
 #if DEBUG
             ViewBag.isreg = 1;
             Session["openid"] = "1";
-            Session["areaid"] = 1;
+            Session["areaid"] = 3;
 #else
             var wx = new OpenAuthWX(System.Configuration.ConfigurationManager.AppSettings["wxappid"], System.Configuration.ConfigurationManager.AppSettings["wxappsecret"], 2);
 
@@ -45,20 +45,23 @@ namespace CSRMWeb.Controllers
             }
 
 #endif
-            
 
-            
+
+
 
 
             return View();
         }
         [CustAuthorizeAttribute()]
-        public ActionResult huiyijianjie() 
+        public ActionResult huiyijianjie()
         {
-            var areaid = Convert.ToInt32(Session["areaid"]);
+            var areaid = 1;
             DBConnection db = new DBConnection();
             var o = db.huiyijianjie.FirstOrDefault(a => a.areaid == areaid);
-
+            if (null == o)
+            {
+                o = new huiyijianjie();
+            }
             return View(o);
         }
         [CustAuthorizeAttribute()]
@@ -77,7 +80,14 @@ namespace CSRMWeb.Controllers
             DBConnection db = new DBConnection();
             CSRMDAL.Model.huiyiricheng_ext x = new CSRMDAL.Model.huiyiricheng_ext();
             x.o = db.huiyirichen.FirstOrDefault(a => a.areaid == areaid);
-            x.list = db.huiyirichen_c.Where(a => a.pid == x.o.id).ToList();
+            if (x.o != null)
+            {
+                x.list = db.huiyirichen_c.Where(a => a.pid == x.o.id).ToList();
+            }
+            else
+            {
+                x.list = new List<huiyirichen_c>();
+            }
             return View(x);
         }
         [CustAuthorizeAttribute()]
@@ -96,7 +106,15 @@ namespace CSRMWeb.Controllers
             DBConnection db = new DBConnection();
             CSRMDAL.Model.jiaotong_ext x = new CSRMDAL.Model.jiaotong_ext();
             x.o = db.jiaotong.FirstOrDefault(a => a.areaid == areaid);
-            x.list = db.jiaotong_c.Where(a => a.pid == x.o.id).ToList();
+            if (x.o != null)
+            {
+                x.list = db.jiaotong_c.Where(a => a.pid == x.o.id).ToList();
+            }
+            else
+            {
+                x.o = new jiaotong();
+                x.list = new List<jiaotong_c>();
+            }
             return View(x);
         }
         [CustAuthorizeAttribute()]
@@ -105,7 +123,10 @@ namespace CSRMWeb.Controllers
             var areaid = Convert.ToInt32(Session["areaid"]);
             DBConnection db = new DBConnection();
             var o = db.lianxiwomen.FirstOrDefault(a => a.areaid == areaid);
-
+            if (o==null)
+            {
+                o = new lianxiwomen();
+            }
             return View(o);
         }
         [CustAuthorizeAttribute()]
@@ -163,13 +184,13 @@ namespace CSRMWeb.Controllers
         }
 
         [HttpPost]
-        public JsonResult baoming(int areaid, int pid,string pname, int cid,string cname, string name, string tel, string work, string dept, int age, string tech)
+        public JsonResult baoming(int areaid, int pid, string pname, int cid, string cname, string name, string tel, string work, string dept, int age, string tech)
         {
             if (Session["openid"] == null)
             {
                 return Json(new { result = 0, msg = St.GetLoginUrl() }, JsonRequestBehavior.DenyGet);
             }
-            DBConnection db = new DBConnection();   
+            DBConnection db = new DBConnection();
             string openid = Session["openid"].ToString();
             if (db.users.Where(a => a.openid == openid).Count() == 0)
             {
@@ -191,12 +212,12 @@ namespace CSRMWeb.Controllers
                 db.SaveChanges();
                 return Json(new { result = 1 }, JsonRequestBehavior.DenyGet);
             }
-            else 
+            else
             {
                 return Json(new { result = 2 }, JsonRequestBehavior.DenyGet);
             }
 
-            
+
         }
     }
 }

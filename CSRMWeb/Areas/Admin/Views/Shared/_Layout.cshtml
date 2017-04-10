@@ -104,7 +104,7 @@
             } else {
                 alert(data.Msg);
                 getinfo();
-                if (callback) { callback();}
+                if ("undefined" != typeof callback) { callback(); }
             }
         }
         function getdata(url, data, fn) {

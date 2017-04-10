@@ -7,10 +7,50 @@
 <div class="zaixianbao-main">
     <div class="huiyirichen-main-top1">会议日程</div>
     <div class="huiyirichen-main-top2">
-        <p><span>日期：</span><span>@Model.o.date </span></p>
-        <p><span>时间：</span><span>@Model.o.time </span></p>
-        <p><span>地点：</span><span>@Model.o.areastr </span></p>
+        <a href="javascript:;">会议日期及时间：</a>
+        <p><span>@(Model.o!=null?Model.o.date:"")</span><span>@(Model.o!=null?Model.o.time:"")</span></p>
     </div>
+    <div class="huiyirichen-main-top2">
+        <a href="javascript:;">五城市会议主席：</a>
+        <p><span>福州主会场：</span><span>孙莹璞</span></p>
+        <p><span>昆明会场：</span><span>黄国宁</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span>上海会场：</span><span>冯云</span></p>
+        <p><span>北京会场：</span><span>沈浣</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span>太原会场：</span><span>周灿权</span></p>
+    </div>
+    <div class="huiyirichen-main-header">会议地点：</div>
+    <table class="huiyirichen-main-top3" width="90%" height="auto" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <th>会场</th>
+            <th>酒店名称</th>
+            <th>酒店地址</th>
+        </tr>
+        <tr>
+            <td>福州</td>
+            <td>福州融侨皇冠假日酒店</td>
+            <td>福州台江区江滨西大道100-1号</td>
+        </tr>
+        <tr>
+            <td>昆明</td>
+            <td>昆明新纪元酒店</td>
+            <td>昆明五华区东风西路1号</td>
+        </tr>
+        <tr>
+            <td>上海</td>
+            <td>上海外高桥皇冠假日酒店</td>
+            <td>上海浦东新区杨高北路1000号</td>
+        </tr>
+        <tr>
+            <td>北京</td>
+            <td>北京丽都维景酒店</td>
+            <td>北京朝阳区将台路6号</td>
+        </tr>
+        <tr>
+            <td>太原</td>
+            <td>太原万达文华酒店</td>
+            <td>太原杏花岭区解放路169号</td>
+        </tr>
+    </table>
+    <div class="huiyirichen-main-header">会议日程：</div>
+
     <table class="huiyirichen-main-top3" width="90%" height="auto" border="0" cellspacing="0" cellpadding="0">
         <tr>
             <th>时间</th>

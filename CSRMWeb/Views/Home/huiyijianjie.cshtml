@@ -5,7 +5,41 @@
 }
 
 <div class="zaixianbao-main">
-    <div class="huiyijianjie-main-top1">会议简介</div>
-    <p class="huiyijianjie-main">@Model.info</p>
+    <div class="huiyijianjie-main-top1">会议简介</div><a class="zaixianbao-main-a" href="javascript:;">点击查看通知原文</a>
+    <p class="huiyijianjie-main">@Html.Raw(Model.info)</p>
 </div>
+<div class="tanceng-warp">
+    <div class="tanceng-warp-in">
+        <div class="text-mingxi">
+            <img src="~/Images/notice.jpg" />
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            tanChu($(".zaixianbao-main-a"), $(".tanceng-warp"), $(".text-mingxi"), $(".zaixian-warp-tanceng1"));
+
+            function tanChu(obj, obj1, obj2, obj3) {
+                obj.click(function () {
+                    obj1.fadeIn();
+                })
+                obj1.click(function () {
+                    $(this).fadeOut();
+                })
+                obj2.click(function (e) {
+                    e.stopPropagation();
+                })
+                obj3.click(function () {
+
+                    obj1.fadeOut();
+                })
+
+            }
+
+
+        });
+    </script>
+}
 
