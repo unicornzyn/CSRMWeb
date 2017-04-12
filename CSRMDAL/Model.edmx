@@ -31,7 +31,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="areaid" Type="int" Nullable="false" />
-          <Property Name="info" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="info" Type="varchar(max)" />
           <Property Name="addtime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="huiyirichen">
@@ -137,10 +137,10 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="areaid" Type="int" Nullable="false" />
           <Property Name="title" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="content" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="content" Type="varchar(max)" />
           <Property Name="addtime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="meorkStoreContainer">
@@ -229,7 +229,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="areaid" Type="Int32" Nullable="false" />
-          <Property Name="info" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="huiyirichen">
@@ -312,7 +312,7 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="areaid" Type="Int32" Nullable="false" />
           <Property Name="title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
       </Schema>

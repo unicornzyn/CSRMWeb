@@ -8,7 +8,7 @@
         <a href="@(ViewBag.isreg == 1 ? "javascript:alert('您已注册');" : "/Home/zaixianbaoming")"><img src="~/Images/bm.png" /><span>在线报名</span></a>
     </li>
     <li>
-        <a href="@(ViewBag.isreg == 0 ? "javascript:alert('请您先报名，才能查看相关会场信息');" : "/Home/huiyijianjie")"><img src="~/Images/hy.png" /><span>会议简介</span></a>
+        <a href="/Home/huiyijianjie"><img src="~/Images/hy.png" /><span>会议简介</span></a>
     </li>
     <li>
         <a href="@(ViewBag.isreg == 0 ? "javascript:alert('请您先报名，才能查看相关会场信息');" : "/Home/huiyirichen")"><img src="~/Images/rc.png" /><span>会议日程</span></a>
@@ -20,7 +20,7 @@
         <a href="@(ViewBag.isreg == 0 ? "javascript:alert('请您先报名，才能查看相关会场信息');" : "/Home/jiangzhejieshao")"><img src="~/Images/jz.png" /><span>讲者介绍</span></a>
     </li>
     <li>
-        <a href="@(ViewBag.isreg == 0 ? "javascript:alert('请您先报名，才能查看相关会场信息');" : "/Home/zhinan")"><img src="~/Images/zn.png" /><span>指南解读</span></a>
+        <a href="@(ViewBag.isreg == 0 ? "javascript:alert('请您先报名，才能查看相关会场信息');" : "/Home/zhinanjiedu")"><img src="~/Images/zn.png" /><span>指南解读</span></a>
     </li>
     <li style="margin:0px;">
         <a href="@(ViewBag.isreg == 0 ? "javascript:alert('请您先报名，才能查看相关会场信息');" : "/Home/jiaotong")"><img src="~/Images/jt.png" /><span>酒店交通</span></a>

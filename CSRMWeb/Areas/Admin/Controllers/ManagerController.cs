@@ -35,7 +35,7 @@ namespace CSRMWeb.Areas.Admin.Controllers
         public JsonResult hyjjPost()
         {
             var areaid = 1;
-            var txtinfo = Request.Form["txtinfo"];
+            var txtinfo = Request.Form["content"];
 
             var db = new DBConnection();
             var o = db.huiyijianjie.FirstOrDefault(a => a.areaid == areaid);
@@ -306,17 +306,19 @@ namespace CSRMWeb.Areas.Admin.Controllers
         {
             return View();
         }
+        [ValidateInput(false)]
         public JsonResult znjdPost()
         {
-            var areaid = Convert.ToInt32(Request.Form["selarea"]);
+            var areaid = Convert.ToInt32(Request.Form["aid"]);
+            var pid = Convert.ToInt32(Request.Form["pid"]);
             var txttitle = Request.Form["txttitle"];
-            var txtinfo = Request.Form["txtinfo"];
+            var txtinfo = Request.Form["content"];
+
 
             var db = new DBConnection();
-            var o = db.zhinan.FirstOrDefault(a => a.areaid == areaid);
-            if (o == null)
+            if (pid == 0)
             {
-                o = new zhinan();
+                var o = new zhinan();
                 o.areaid = areaid;
                 o.title = txttitle;
                 o.content = txtinfo;
@@ -325,25 +327,36 @@ namespace CSRMWeb.Areas.Admin.Controllers
             }
             else
             {
-                o.title = txttitle;
-                o.content = txtinfo;
-                o.addtime = DateTime.Now;
-            }
+                var o = db.zhinan.FirstOrDefault(a => a.id == pid);
+                if (o != null)
+                {
+                    o.title = txttitle;
+                    o.content = txtinfo;
+                    o.addtime = DateTime.Now;
+                }
+            }            
 
             db.SaveChanges();
 
             return Json(new { Result = 1, Msg = "保存成功！" }, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult znjdDel(int id)
+        {
+            var db = new DBConnection();
+            var o = db.zhinan.FirstOrDefault(a => a.id == id);
+            if (o != null)
+            {
+                db.zhinan.Remove(o);
+                db.SaveChanges();
+            }
+            return Json(new { Result = 1, Msg = "删除成功！" });
+        }
         public JsonResult znjdGet(int areaid)
         {
             var db = new DBConnection();
-            var o = db.zhinan.FirstOrDefault(a => a.areaid == areaid);
-            if (o == null)
-            {
-                o = new zhinan();
-            }
+            List<zhinan> list = db.zhinan.Where(a => a.areaid == areaid).ToList();
 
-            return Json(new { Result = 1, Msg = "获取成功！", Data = o }, JsonRequestBehavior.AllowGet);
+            return Json(new { Result = 1, Msg = "获取成功！", Data = list }, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// 酒店交通
@@ -608,7 +621,7 @@ namespace CSRMWeb.Areas.Admin.Controllers
                 //    action = new CrawlerHandler(context);
                 //    break;
                 default:
-                    action = new NotSupportedHandler(HttpContext);
+                    //action = new NotSupportedHandler(HttpContext);
                     break;
             }
             action.Process();

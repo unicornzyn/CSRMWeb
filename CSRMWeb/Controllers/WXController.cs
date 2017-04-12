@@ -70,7 +70,7 @@ namespace CSRMWeb.Controllers
 
         public string Subscribe(string toUser, string fromUser)
         {
-            return CreateImageAndText(toUser, fromUser, "2017年CSRM规范指南中国行", "请点击图片，进入平台在线报名及了解会议信息", System.Configuration.ConfigurationManager.AppSettings["rooturl"] + "Images/banner_1.jpg", St.GetLoginUrl());
+            return CreateImageAndText(toUser, fromUser, "2017年CSRM规范指南中国行", "请点击图片，进入平台在线报名及了解会议信息", System.Configuration.ConfigurationManager.AppSettings["rooturl"] + "Images/banner_2.jpg", St.GetLoginUrl());
         }
         //生成图文消息
         private string CreateImageAndText(string toUser, string fromUser, string title, string description, string picurl, string url)

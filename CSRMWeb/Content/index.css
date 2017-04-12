@@ -236,8 +236,9 @@
 }
 .text-mingxi{
 	width:80%;
+	height:90%;
 	background:#fff;
-	margin:20% 0 0 10%;
+	margin:10% 0 0 10%;
 }
 .text-mingxi img{
 	width:100%;
@@ -332,6 +333,37 @@
 	background:url(../images/huiyijiang_Bg.png) no-repeat left center;
 	background-size:50px 51px;
 }
+.zhinanjiedu-main-top3{
+	width:90%;
+	height:auto;
+	padding:30px 5%;
+}
+.zhinanjiedu-main-top3 li{
+	width:94%;
+	height:48;
+	padding:0 3%;
+	border-bottom:1px solid #ccc;
+}
+.zhinanjiedu-main-top3 li a{
+	display:block;
+	width:95%;
+	height:48px;
+	line-height:48px;
+	font-size:18px;
+	font-family:"黑体";
+	color:#424538;
+	background:url(../images/right_bg_03.png) no-repeat right center;
+	
+}
+.jiangzhejieshao-main-text{
+	width:90%;
+	height:auto;
+	padding:4px 5%;
+	font-size:0.31rem;
+	font-family:"黑体";
+	color:#3d3d3d;
+	line-height:24px;
+}
 .huiyijiangyi-main-top3{
 	width:90%;
 	height:auto;
@@ -379,14 +411,14 @@
 
 }
 .jiangzhejieshao-main-top1{
-	width:72%;
+	width:74%;
 	height:auto;
 	margin:0 auto;
-	font-size:18px;
+	font-size:20px;
 	font-family:"黑体";
 	padding-top:5px;
-	color:#0fa3fd;
-	padding:25px 0 25px 18%;
+	color:#28a6d7;
+	padding:25px 0 25px 16%;
 	background:url(../images/jiangzhejieshao_bg_03.jpg) no-repeat left center;
 	background-size:50px 51px;
 }

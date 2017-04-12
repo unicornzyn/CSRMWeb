@@ -17,7 +17,7 @@ namespace CSRMWeb.Controllers
 #if DEBUG
             ViewBag.isreg = 1;
             Session["openid"] = "1";
-            Session["areaid"] = 3;
+            Session["areaid"] = 1;
 #else
             var wx = new OpenAuthWX(System.Configuration.ConfigurationManager.AppSettings["wxappid"], System.Configuration.ConfigurationManager.AppSettings["wxappsecret"], 2);
 
@@ -123,7 +123,7 @@ namespace CSRMWeb.Controllers
             var areaid = Convert.ToInt32(Session["areaid"]);
             DBConnection db = new DBConnection();
             var o = db.lianxiwomen.FirstOrDefault(a => a.areaid == areaid);
-            if (o==null)
+            if (o == null)
             {
                 o = new lianxiwomen();
             }
@@ -148,12 +148,23 @@ namespace CSRMWeb.Controllers
             return View(list);
         }
         [CustAuthorizeAttribute()]
-        public ActionResult zhinan()
+        public ActionResult zhinanjiedu()
         {
             var areaid = Convert.ToInt32(Session["areaid"]);
             DBConnection db = new DBConnection();
-            var o = db.zhinan.FirstOrDefault(a => a.areaid == areaid);
+            var list = db.zhinan.Where(a => a.areaid == areaid).ToList();
 
+            return View(list);
+        }
+        [CustAuthorizeAttribute()]
+        public ActionResult zhinan(int id)
+        {
+            DBConnection db = new DBConnection();
+            var o = db.zhinan.FirstOrDefault(a => a.id == id);
+            if (o == null)
+            {
+                o = new zhinan();
+            }
             return View(o);
         }
         [CustAuthorizeAttribute()]

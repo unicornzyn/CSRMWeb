@@ -17,8 +17,7 @@
 
             </script>
             <script type="text/javascript" src="~/Areas/Admin/Scripts/ueditor/ueditor.config.js"></script>
-            <script type="text/javascript" src="~/Areas/Admin/Scripts/ueditor/ueditor.all.min.js"></script>
-            <input type="hidden" id="txtinfo" name="txtinfo" placeholder="会议简介" data-val="true" data-val-required="必填" data-val-length-max="500" data-val-length="最多500个字符" />
+            <script type="text/javascript" src="~/Areas/Admin/Scripts/ueditor/ueditor.all.min.js"></script>            
             <span data-valmsg-for="txtinfo" data-valmsg-replace="true" class="error"></span>
         </div>
     </div>
@@ -33,18 +32,12 @@
 {
     <script type="text/javascript">
         var ue = UE.getEditor('container');
-        ue.addListener("contentchange", function () {
-            $("#txtinfo").val($("textarea[name='content']").val());
-        });
+       
         $(function () {
             ue.ready(function () {
-                ue.setContent('@Html.Raw(Model.info)');
-                ue.fireEvent("contentchange");
+                ue.setContent('@Html.Raw(Model.info)');                
             });
 
-            //$("form").on("change", "textarea[name='content']", function () {
-            //
-            //});
             
         });
         function getinfo() { }

@@ -1,0 +1,15 @@
+﻿@model List<CSRMDAL.zhinan>
+@{
+    ViewBag.Title = "zhinanjiedu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="zaixianbao-main">
+    <div class="zhinanjiedu-main-top1">指南解读</div>
+    <ul class="zhinanjiedu-main-top3">
+        @foreach (var o in Model)
+        {
+            <li><a href="/Home/zhinan/@o.id">@o.title</a></li>
+        }
+    </ul>
+</div>

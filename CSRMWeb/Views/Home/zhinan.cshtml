@@ -7,8 +7,8 @@
 <div class="zaixianbao-main">
     <div class="zhinanjiedu-main-top1">指南解读</div>
     <div class="zhinanjiedu-main-top2">
-        <h4>@(Model!=null?Model.title:"")</h4>
-        <p>@(Model!=null?Model.content:"")<p>
+        <h4>@Model.title</h4>
+        <p>@Html.Raw(Model.content)<p>
     </div>
 </div>
 
