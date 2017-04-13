@@ -64,7 +64,7 @@
           <Property Name="areaid" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="unitname" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="info" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="info" Type="varchar(max)" />
           <Property Name="img" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="addtime" Type="datetime" Nullable="false" />
         </EntityType>
@@ -262,7 +262,7 @@
           <Property Name="areaid" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="unitname" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="info" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="img" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="addtime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
