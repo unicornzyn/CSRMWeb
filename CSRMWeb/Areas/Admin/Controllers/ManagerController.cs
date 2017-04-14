@@ -366,6 +366,7 @@ namespace CSRMWeb.Areas.Admin.Controllers
         {
             return View();
         }
+        [ValidateInput(false)]
         public JsonResult jdjtPost()
         {
             var areaid = Convert.ToInt32(Request.Form["selarea"]);

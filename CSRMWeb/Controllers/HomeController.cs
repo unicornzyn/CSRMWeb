@@ -117,6 +117,14 @@ namespace CSRMWeb.Controllers
             }
             return View(x);
         }
+        public ActionResult jiaotongmap() 
+        {
+            var areaid = Convert.ToInt32(Session["areaid"]);
+            DBConnection db = new DBConnection();
+            var o = db.jiaotong.FirstOrDefault(a => a.areaid == areaid);
+            ViewBag.html = o != null ? o.img : "";
+            return View();
+        }
         [CustAuthorizeAttribute()]
         public ActionResult lianxiwomen()
         {

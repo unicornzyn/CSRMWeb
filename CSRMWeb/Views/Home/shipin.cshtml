@@ -15,11 +15,18 @@
     {
         <li class="index-content">
             <a href="javascript:;"><img src="/upload/@(Model.ElementAt(i * 2).img)" /></a>
-            @if(Model.Count > i * 2 + 1)
+            @if (Model.Count > i * 2 + 1)
             {
-            <a href="javascript:;"><img src="/upload/@(Model.ElementAt(i * 2 + 1).img)" /></a>
+                <a href="javascript:;"><img src="/upload/@(Model.ElementAt(i * 2 + 1).img)" /></a>
             }
         </li>
     }
 </ul>
-
+@section scripts
+{
+<script type="text/javascript">
+    $(function () {
+        $(".index-banner").hide();
+    });
+</script>
+}

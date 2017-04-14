@@ -1,1 +1,0 @@
-alter table jiangzhejieshao alter column info varchar(max) 
